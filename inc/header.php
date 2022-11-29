@@ -25,12 +25,12 @@
             </button>
             <div class="collapse navbar-collapse text-center justify-content-end" id="navbar3SupportedContent">
                 <ul class="navbar-nav">
-
+                view/create_account_part1_view.php
                     <li class="nav-item mx-2 mb-2 my-md-0">
-                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link" href="view/create_account_part1_view.php">Création de compte</a>
                     </li>
                     <li class="nav-item mx-2 mb-2 my-md-0">
-                        <a class="nav-link" href="../view/form_creation_vue.php">Deconnexion</a>
+                        <a class="nav-link" href="controllers/logout.php">Deconnexion</a>
                     </li>
                 </ul>
             </div>

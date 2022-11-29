@@ -6,7 +6,7 @@
 	margin-bottom: 20px;
 }
 
-.formulaire {
+.form-signin {
 	margin: 0 auto;
 	margin-top: 100px;
 	text-align: center;
@@ -19,4 +19,7 @@
 
 label{
 	margin-right: 6.3cm;
+}
+.erreur{
+	color: red;
 }

@@ -1,25 +1,29 @@
 <?php
 // test 
 // echo 'login_view';
+require './controllers/login_controller.php'
 
 ?>
 <?php require './inc/header.php' ?>
 <link rel="stylesheet" href="assets/css/connexion.css">
 
-<form class="formulaire " method="post" action="">
-    <h1>Connexion</h1>
+<main role="main" class="pt-5 container mt-3 site-content" id="home">
+    <h1 class="d-flex justify-content-around pt-5 pb-4">Connectez-vous !</h1>
+    <div class = "login-form container">
 
-    <label>Login*</label></br>
-    <input type="hidden" name="to" value="rodson@gmail.com">
-    <div class="form-group">
-        <input type="email" class="form-control form-control-sm" placeholder="Votre email" required="required" name="email">
-    </div>
-    <div class="form-group">
-        <label>Pasword*</label></br>
-        <input type="password" pattern="^\D[A-z-]*$" class="form-control form-control-sm" id="inlineFormInput" placeholder="Votre mot de passe" required="required" name="name">
-    </div>
+        <form class = "form-signin" role = "form"
+        action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" 
+        method = "post">
+           <input type = "text" class = "form-control" 
+              name = "username" placeholder = "nathan.genne@gmail.com" 
+              required autofocus></br>
+           <input type = "password" class = "form-control"
+              name = "password" placeholder = "password" required>
+              <p class = "erreur"><?php echo $msg; ?></p>
+           <button class = "btnLogin bg-secondary-color btn btn-lg btn-block" type = "submit" 
+              name = "login">Connexion</button>
+        </form>
 
-    <button class="connexion" value="login" name="login" type="submit" class="btn btn-success">Connexion</button> <br>
-    <a class="compte" href="./form_creation_vue.php">crée votre compte</a>
-</form>
+    </div>
+</main>
 <?php require './inc/footer.php' ?>
