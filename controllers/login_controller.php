@@ -11,7 +11,7 @@ if (isset($_POST['login']) && !empty($_POST['username'])
       $_SESSION['valid'] = true;
       $_SESSION['user_email'] = $user;
       $_SESSION['user_pwd'] = $user['user_pwd'];
-      header('Location: home_page_view.php');
+      header('Location: accueil');
    } else {
       $msg = "Mauvais email ou mot de passe";
    }

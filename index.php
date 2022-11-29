@@ -49,6 +49,4 @@ switch ($url[0]) {
         break;
             
 }
-require_once 'inc/footer.php';
-
 ?>

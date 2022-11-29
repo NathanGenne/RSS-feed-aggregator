@@ -14,7 +14,7 @@ require './controllers/login_controller.php'
         <form class = "form-signin" role = "form"
         action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" 
         method = "post">
-           <input type = "text" class = "form-control" 
+           <input type = "email" class = "form-control" 
               name = "username" placeholder = "nathan.genne@gmail.com" 
               required autofocus></br>
            <input type = "password" class = "form-control"
