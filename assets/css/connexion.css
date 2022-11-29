@@ -1,0 +1,22 @@
+/* connexion  */
+.login {
+	margin-bottom: 40px;
+}
+.password {
+	margin-bottom: 20px;
+}
+
+.formulaire {
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	width: 300px;
+	height: 400px;
+}
+.connexion:hover {
+	background-color: rgb(77, 88, 88);
+}
+
+label{
+	margin-right: 6.3cm;
+}

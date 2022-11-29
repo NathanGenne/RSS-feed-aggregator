@@ -1,3 +1,4 @@
+<?php require './inc/header.php' ?>
 <link rel="stylesheet" href="assets/css/connexion.css">
 
 <form class="formulaire " method="post" action="">
