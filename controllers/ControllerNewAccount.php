@@ -34,10 +34,10 @@
                     $_SESSION['tmp_email'] = $email;
                     $_SESSION['tmp_pass'] = $pwd;
         
-                    header('Location: ../newAccount/phase2');
+                    header('Location: ./phase2');
         
                 } else {
-                    header('Location: ../newAccount/phase1');
+                    header('Location: ./phase1');
                 }
             }
         }

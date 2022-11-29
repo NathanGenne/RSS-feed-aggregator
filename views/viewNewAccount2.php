@@ -13,7 +13,7 @@
     <form id="msform" action = "./newAccount/verify" method = "post">
         <!-- fieldsets -->
         <fieldset>
-            <h2 class="fs-title">Crée votre compte</h2>
+            <h2 class="fs-title">Sélectionner 3 préférences</h2>
             <input type="text" name="fname" placeholder="First Name" />
             <input type="text" name="lname" placeholder="Last Name" />
             <input type="text" name="email" placeholder="Email" />
