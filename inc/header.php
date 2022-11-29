@@ -5,7 +5,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- PAGE settings -->
     <link rel="icon">
     <title>projet</title>
     <meta name="description" content="">
@@ -18,7 +17,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Home</a>
+            <a class="navbar-brand" href="#">LE MONDE</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar3SupportedContent" aria-controls="navbar3SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,13 +25,12 @@
                 <ul class="navbar-nav">
 
                     <li class="nav-item mx-2 mb-2 my-md-0">
-                        <a class="nav-link" href="Connexion.php">Connexion</a>
+                        <a class="nav-link" href="#">Connexion</a>
                     </li>
                     <li class="nav-item mx-2 mb-2 my-md-0">
-                        <a class="nav-link" href="#team">Deconnexion</a>
+                        <a class="nav-link" href="../view/form_creation_vue.php">Deconnexion</a>
                     </li>
                 </ul>
-                <!-- <a class="btn navbar-btn btn-outline-light" href="#contact">Contact</a> -->
             </div>
         </div>
     </nav>
