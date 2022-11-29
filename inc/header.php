@@ -11,12 +11,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <!-- CSS dependencies -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- scss -->
-    <link rel="stylesheet" href="css/trombi.css">
-    <!-- Script: Navbar on-top -->
-
-    <script src="js/navbar-ontop.js"></script>
+    <link rel="stylesheet" href="assets/css/nav.css">
 </head>
 
 <body>
