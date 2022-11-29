@@ -2,13 +2,13 @@
 
 ?>
 
-<link rel="stylesheet" href="assets/css/connexion.css">
+<link rel="stylesheet" href="../assets/css/viewNewAccount1.css">
 
 <main role="main" class="pt-5 container mt-3 site-content" id="home">
     <h1 class="d-flex justify-content-around pt-5 pb-4">Connectez-vous !</h1>
     <div class = "login-form container">
 
-        <form class = "form-signin" role = "form" action = "./login/verify" method = "post">
+        <form class = "msform" role = "form" action = "./login/verify" method = "post">
            <input type = "email" class = "form-control" 
               name = "username" placeholder = "nathan.genne@gmail.com" 
               required autofocus></br>
