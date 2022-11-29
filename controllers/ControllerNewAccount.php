@@ -28,23 +28,16 @@
                 $cpwd = htmlspecialchars($_POST['cpass']);
 
                 if ($pwd === $cpwd){
-                    $model = new modelNewAccount();
-                    $user  = $model->get_user($firstName, $lastName, $email, $pwd);
-    
-                    if ( $user ) {
         
-                        $_SESSION['valid'] = true;
-                        $_SESSION['user_email'] = $user;
-                        $_SESSION['user_pwd'] = $user['user_pwd'];
-                        unset($_SESSION['login_error']);
+                    $_SESSION['tmp_firstName'] = $firstName;
+                    $_SESSION['tmp_lastName'] = $lastName;
+                    $_SESSION['tmp_email'] = $email;
+                    $_SESSION['tmp_pass'] = $pwd;
         
-                        header('Location: ../home');
+                    header('Location: ../newAccount/phase2');
         
-                    } else {
-                        $_SESSION['login_error'] = "Mauvais email ou mot de passe";
-                        header('Location: ../login');
-                    }
-        
+                } else {
+                    header('Location: ../newAccount/phase1');
                 }
             }
         }
