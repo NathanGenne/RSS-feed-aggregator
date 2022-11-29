@@ -16,7 +16,7 @@
 
         public function verify() {
 
-            require 'models/modelLogin.php';
+            require 'models/modelNewAccount.php';
 
             if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
 
@@ -24,7 +24,7 @@
                 $username = htmlspecialchars($_POST['username']);
                 $pwd      = htmlspecialchars($_POST['password']);
 
-                $model = new modelLogin();
+                $model = new modelNewAccount();
                 $user  = $model->get_user($username, $pwd);
 
             if ( $user ) {
