@@ -16,12 +16,7 @@ if(isset($_GET['url'])) {
     $url = explode('/',$url);
 }
 
-// Permet le découpage des articles selon leur index
-/* if(preg_match('#article-([0-9]+)#', $url[0], $params)) {
-    $idArticle = $params[1];
-    require 'view/login_view.php';
-} */
-
+require_once 'inc/header.php';
 
 // Ce switch explore toutes les possibilités prises en compte quand à la composition du premier élément de l'url
 switch ($url[0]) {
@@ -34,11 +29,11 @@ switch ($url[0]) {
         // On vérifie la syntaxe du deuxième composant de l'url pour déterminer l'étape d'inscription
         if ($url[1] == 'etape-1') {
             echo 'etape 1<br>';
-            require 'view/create_account_view.php';
+            require 'view/create_account_part1_view.php';
 
         } elseif ($url[1] == 'etape-2') {
             echo 'etape 2<br>';
-            require 'view/create_account_view.php';
+            require 'view/create_account_part2_view.php';
         }
         break;
 
@@ -54,5 +49,6 @@ switch ($url[0]) {
         break;
             
 }
+require_once 'inc/footer.php';
 
 ?>

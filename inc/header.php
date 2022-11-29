@@ -12,6 +12,8 @@
     <meta name="keywords" content="">
     <!-- CSS dependencies -->
     <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
 </head>
 
 <body>
