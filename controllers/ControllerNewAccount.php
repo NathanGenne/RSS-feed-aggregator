@@ -16,34 +16,37 @@
 
         public function verify() {
 
-            require 'models/modelLogin.php';
+            require 'models/modelNewAccount.php';
 
-            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+            if (isset($_POST['submit']) && !empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['pass']) && !empty($_POST['cpass'])) {
 
                 /* Sécurité supplémentaire */
-                $username = htmlspecialchars($_POST['username']);
-                $pwd      = htmlspecialchars($_POST['password']);
+                $firstName = htmlspecialchars($_POST['fname']);
+                $lastName = htmlspecialchars($_POST['lname']);
+                $email = htmlspecialchars($_POST['email']);
+                $pwd = htmlspecialchars($_POST['pass']);
+                $cpwd = htmlspecialchars($_POST['cpass']);
 
-                $model = new modelLogin();
-                $user  = $model->get_user($username, $pwd);
-
-            if ( $user ) {
-
-                $_SESSION['valid'] = true;
-                $_SESSION['user_email'] = $user;
-                $_SESSION['user_pwd'] = $user['user_pwd'];
-                unset($_SESSION['login_error']);
-
-                header('Location: ../home');
-
-            } else {
-                $_SESSION['login_error'] = "Mauvais email ou mot de passe";
-                header('Location: ../login');
+                if ($pwd === $cpwd){
+                    $model = new modelNewAccount();
+                    $user  = $model->get_user($firstName, $lastName, $email, $pwd);
+    
+                    if ( $user ) {
+        
+                        $_SESSION['valid'] = true;
+                        $_SESSION['user_email'] = $user;
+                        $_SESSION['user_pwd'] = $user['user_pwd'];
+                        unset($_SESSION['login_error']);
+        
+                        header('Location: ../home');
+        
+                    } else {
+                        $_SESSION['login_error'] = "Mauvais email ou mot de passe";
+                        header('Location: ../login');
+                    }
+        
+                }
             }
-
         }
 
-    }
 }
-
-?>

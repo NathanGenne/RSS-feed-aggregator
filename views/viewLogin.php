@@ -19,7 +19,7 @@
               name = "login">Connexion</button>
         </form>
 
-        <a href="./newAccount/phase-1">créer un compte</a>
+        <a href="./newAccount/phase1">créer un compte</a>
 
     </div>
 </main>
