@@ -19,7 +19,7 @@
                 $model = new modelLogin();
                 $user  = $model->get_user($username, $pwd);
 
-            if ( $user ) {
+            if ( $user && $pwd == $_POST['password'] ) {
 
                 $_SESSION['valid'] = true;
                 $_SESSION['user_email'] = $user;

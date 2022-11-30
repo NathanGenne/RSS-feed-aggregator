@@ -5,31 +5,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/viewNewAccount1.css">
+    <title>Création de compte - 2</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style  type="text/css">
+    .off {
+        background-color: #ffffff;
+        border: #666666 1px solid;
+        color: #cccccc;
+        font: 20px Verdana,Arial,Helvetica,sans-serif;
+        font-weight: bold;
+    }
+    .on {
+        background-color: green;
+        border: #666666 1px solid;
+        color: #ffffff;
+        font: 20px Verdana,Arial,Helvetica,sans-serif;
+        font-weight: bold;
+    }
+    </style>
+    <script>
+        // ---------------------------------------------------------
+        // Functions js relatives à la sélection des centres d'intérêts
+        // ---------------------------------------------------------
+
+        var currenttotal = 0;
+
+        function btnclick(btn)
+        {
+            if (btn.classList.contains("on"))
+            {
+                btn.class="off";
+                btn.setAttribute("class","off");
+                currenttotal--;
+                return false;
+            }
+
+            if (currenttotal == 3) { return false; }
+
+            if (btn.classList.contains("off"))
+            {
+                btn.class="on";
+                btn.setAttribute("class","on");
+                currenttotal++;
+                return false;
+            }
+        }
+
+        function confirm() {
+            topics = [];
+            if (currenttotal > 0) {
+                for($i=0; $i < currenttotal; $i++) {
+                    inputValue = document.getElementsByClassName('on')[$i].value;
+                    topics.push(inputValue);
+                }
+                document.getElementById('result').innerHTML = topics;
+            }
+
+        }
+    </script>
 </head>
 
 <body>
-    <form id="msform" action = "./newAccount/verify" method = "post">
-        <!-- fieldsets -->
-        <fieldset>
-            <h2 class="fs-title">Sélectionner 3 préférences</h2>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="email" placeholder="Email" />
-            <input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
-            
-            <!-- btn  -->
-            <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
-            <input type="submit" name="submit" class="submit action-button" value="Submit" />
-        </fieldset>
-        <fieldset>
-            <h2 class="fs-title"> Crée votre compte </h2>
-        </fieldset>
-    </form>
-    
-    <script async src="script.js"></script>
+    <p>
+        <input class="off" type="button" value="bresil" onclick='btnclick(this);' />
+        <input class="off" type="button" value="sport" onclick='btnclick(this);'  />
+        <input class="off" type="button" value="politique" onclick='btnclick(this);' />
+        <input class="off" type="button" value="emploi" onclick='btnclick(this);' />
+        <input class="off" type="button" value="livres" onclick='btnclick(this);' />
+    </p>
+    <p id='result'></p>
+    <input class="off" type="button" value="confirmer" onclick='confirm();' />
 </body>
 
 </html>
