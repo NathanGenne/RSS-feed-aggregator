@@ -14,42 +14,6 @@
             require 'views/viewLogin.php';
         }
 
-        public function verify() {
-
-            require 'models/modelNewAccount.php';
-
-            if (isset($_POST['submit']) && !empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['pass']) && !empty($_POST['cpass'])) {
-
-                /* Sécurité supplémentaire */
-                $firstName = htmlspecialchars($_POST['fname']);
-                $lastName  = htmlspecialchars($_POST['lname']);
-                $email     = htmlspecialchars($_POST['email']);
-                $userName  = htmlspecialchars($_POST['username']);
-                $pwd       = htmlspecialchars($_POST['pass']);
-                $cpwd      = htmlspecialchars($_POST['cpass']);
-
-                if ($pwd === $cpwd){
-        
-                    $_SESSION['tmp_firstName'] = $firstName;
-                    $_SESSION['tmp_lastName'] = $lastName;
-                    $_SESSION['username'] = $userName;
-                    $_SESSION['tmp_email'] = $email;
-                    $_SESSION['tmp_pass'] = $pwd;
-
-                    unset($_SESSION['new_account_error']);
-        
-                    header('Location: ./phase2');
-        
-                } else {
-                    $_SESSION['new_account_error'] = "Le mot de passe et sa confirmation ne correspondent pas";
-                    header('Location: ./phase1');
-                }
-            } else {
-                $_SESSION['new_account_error'] = "Un des champs n'est pas rempli";
-                header('Location: ./phase1');
-            }
-        }
-
         public function setNewAccount(){
 
             require './models/modelNewAccount.php';
@@ -70,18 +34,23 @@
                         $mailexist =  $model->get_user_by_mail($user_mail);
                         // Si le mail n'existe pas :
                         if(!$mailexist) {
-                            // Si les mots de passe ne sont pas cohérents :
+                            // Si les mots de passe sont cohérents :
                             if($pwd == $pwd2) {
                                 // On génère une clé unique à chaque utilisateur
                                 $key = uniqid();
                                 echo $key;
                                 
+                                // On stock cette clef dans une variable $_SESSION
                                 $_SESSION['key'] = $key;
+                                $_SESSION['username'] = $username;
 
+                                // On supprime le contenu de la variable contenant le message d'erreur
                                 unset($_SESSION['newAccountError']);
 
+                                // On ajoute les données de l'utilisateur dans la base de donnée
                                 $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
-        
+                                
+                                // On génère et envoi le mail à envoyer à l'utilisateur
                                 $header="MIME-Version: 1.0\r\n";
                                 $header.='From:"<test.rhode@gmail.com>'."\n";
                                 $header.='Content-Type:text/html; charset="uft-8"'."\n";
@@ -97,6 +66,8 @@
                                 </html>
                                 ';
                                 mail($mail, "Confirmation de compte", $message, $header);
+
+                                // Le message d'erreur deviens un message invitant l'utilisateur à cliquer sur le lien envoyé par mail
                                 $_SESSION['newAccountError'] = "Un email de confirmation vous a été envoyé à l'adresse <b>".$user_mail."</b>.";
                                 header('Location: ./phase1');
                             

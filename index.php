@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $params = explode('/', $_GET['url']);
 
@@ -16,7 +17,8 @@ if($params[0] != ""){
 
         if(method_exists($controller, $action)){
             $controller->$action();
-        } else {
+        }
+        else {
             http_response_code(404);
             echo "La page recherchée n'existe pas";
         }

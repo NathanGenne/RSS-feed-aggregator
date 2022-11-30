@@ -1,3 +1,7 @@
+<?php
+$_COOKIE['topics'] = "non";
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -60,7 +64,7 @@
                     topics.push(inputValue);
                 }
                 document.getElementById('result').innerHTML = topics;
-                <?php $abc = "<script>topics</script>"; ?>
+                document.cookie="topics=".topics;
             }
 
         }
@@ -77,7 +81,7 @@
     </p>
     <p id='result'></p>
     <input class="off" type="button" value="confirmer" onclick='confirm();' />
-    <?= $abc ?>
+    <?= $_COOKIE['topics'] ?>
 </body>
 
 </html>
