@@ -22,9 +22,9 @@
             <input type="password" name="cpass" placeholder="Confirm Password" />
             <p class = "error"><?php if(isset($_SESSION['newAccountError'])) { echo $_SESSION['newAccountError']; } ?></p>
             
-            <!-- btn  -->
-            <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+            
             <input type="submit" name="submit" class="submit action-button" value="Submit" />
+            <a href="../login">Retour</a>
         </fieldset>
     </form>
 </body>

@@ -82,6 +82,7 @@ $_COOKIE['topics'] = "non";
     <p id='result'></p>
     <input class="off" type="button" value="confirmer" onclick='confirm();' />
     <?= $_COOKIE['topics'] ?>
+    <a href="../login">Retour à la page de connexion</a>
 </body>
 
 </html>
