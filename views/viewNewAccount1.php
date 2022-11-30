@@ -20,7 +20,7 @@
             <input type="text" name="username" placeholder="Pseudo" />
             <input type="password" name="pass" placeholder="Password" />
             <input type="password" name="cpass" placeholder="Confirm Password" />
-            <p class = "error"><?php if(isset($_SESSION['new_account_error'])) { echo $_SESSION['new_account_error']; } ?></p>
+            <p class = "error"><?php if(isset($_SESSION['newAccountError'])) { echo $_SESSION['newAccountError']; } ?></p>
             
             <!-- btn  -->
             <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->

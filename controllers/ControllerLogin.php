@@ -10,20 +10,20 @@
 
             require 'models/modelLogin.php';
 
-            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+            if (isset($_POST['login']) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
                 /* Sécurité supplémentaire */
-                $username = htmlspecialchars($_POST['username']);
-                $pwd      = htmlspecialchars($_POST['password']);
+                $email = htmlspecialchars($_POST['email']);
+                $pwd   = htmlspecialchars($_POST['password']);
 
                 $model = new modelLogin();
-                $user  = $model->get_user($username, $pwd);
+                $user  = $model->get_user($email, $pwd);
 
             if ( $user && $pwd == $_POST['password'] ) {
 
                 $_SESSION['valid'] = true;
-                $_SESSION['user_email'] = $user;
-                $_SESSION['user_pwd'] = $user['user_pwd'];
+                $_SESSION['mail'] = $email;
+                $_SESSION['pwd'] = $pwd;
                 unset($_SESSION['login_error']);
 
                 header('Location: ../home');

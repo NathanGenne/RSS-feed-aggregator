@@ -74,6 +74,7 @@
                             if($pwd == $pwd2) {
                                 // On génère une clé unique à chaque utilisateur
                                 $key = uniqid();
+                                echo $key;
                                 
                                 $_SESSION['key'] = $key;
 
@@ -89,7 +90,7 @@
                                 <html>
                                 <body>
                                     <div align="center">
-                                        <h3>Vous y êtes presque !</h3>
+                                        <h3>Vous y êtes presque !</h3><br>
                                         <a href="http://127.0.0.1/rss_feed_aggregator.test/newAccount/phase2?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
                                     </div>
                                 </body>

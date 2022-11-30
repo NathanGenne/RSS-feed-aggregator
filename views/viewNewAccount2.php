@@ -60,6 +60,7 @@
                     topics.push(inputValue);
                 }
                 document.getElementById('result').innerHTML = topics;
+                <?php $abc = "<script>topics</script>"; ?>
             }
 
         }
@@ -76,6 +77,7 @@
     </p>
     <p id='result'></p>
     <input class="off" type="button" value="confirmer" onclick='confirm();' />
+    <?= $abc ?>
 </body>
 
 </html>

@@ -13,23 +13,19 @@
             if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
 
                 /* Sécurité supplémentaire */
-                $username = htmlspecialchars($_POST['username']);
-                $pwd      = htmlspecialchars($_POST['password']);
+                $mail = htmlspecialchars($_SESSION['mail']);
 
-                $model = new modelLogin();
-                $user = $model->get_user($username, $pwd);
+                $model = new modelHome();
+                $topics = $model->get_topics($mail);
 
-                if ( $user ) {
+                if ( !empty($topics) ) {
 
-                    $_SESSION['valid'] = true;
-                    $_SESSION['user_email'] = $user;
-                    $_SESSION['user_pwd'] = $user['user_pwd'];
-                    unset($_SESSION['login_error']);
+                    $_SESSION['topics'] = $topics;
 
                     header('Location: ../home');
 
                 } else {
-                    $_SESSION['login_error'] = "Mauvais email ou mot de passe";
+                    $_SESSION['login_error'] = "Vos préférences sont corrompus";
                     header('Location: ../login');
                 }
 
