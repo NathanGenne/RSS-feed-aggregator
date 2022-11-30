@@ -1,5 +1,5 @@
 <?php
-    $topics = ["bresil","sport","politique","emploi","livres"];
+    $topics = ["international","europe","bresil","sport","politique","emploi","livres"];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
