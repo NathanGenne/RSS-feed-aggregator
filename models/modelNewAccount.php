@@ -4,7 +4,7 @@ require './models/db_connect.php';
 
     class modelNewAccount extends db_connect {
         /* Récupértion des centres d'intérêts de l'utilisateur selon son index */
-        function get_topics($id)
+        function add_user($id)
         {
             $db = $this->connexion;
         
