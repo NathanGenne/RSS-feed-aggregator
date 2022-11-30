@@ -74,3 +74,18 @@ a, a:hover {
 	text-decoration: none;
 	color: black;
 }
+
+.off {
+	background-color: #ffffff;
+	border: #666666 1px solid;
+	color: #cccccc;
+	font: 20px Verdana,Arial,Helvetica,sans-serif;
+	font-weight: bold;
+}
+.on {
+	background-color: green;
+	border: #666666 1px solid;
+	color: #ffffff;
+	font: 20px Verdana,Arial,Helvetica,sans-serif;
+	font-weight: bold;
+}

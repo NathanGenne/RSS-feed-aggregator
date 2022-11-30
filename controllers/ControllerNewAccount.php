@@ -57,12 +57,12 @@
             if(isset($_POST['submit'])) {
 
                 if(!empty($_POST['username']) && !empty($_POST['mail']) && !empty($_POST['pwd']) && !empty($_POST['pwd2']) && !empty($_POST['firstname']) && !empty($_POST['lastname'])) {
-                    $username = htmlspecialchars($_POST['username']);
+                    $username  = htmlspecialchars($_POST['username']);
                     $user_mail = htmlspecialchars($_POST['mail']);
-                    $pwd = sha1($_POST['pwd']);
-                    $pwd2 = sha1($_POST['pwd2']);
+                    $pwd       = sha1($_POST['pwd']);
+                    $pwd2      = sha1($_POST['pwd2']);
                     $firstname = htmlspecialchars($_POST['firstname']);
-                    $lastname = htmlspecialchars($_POST['lastname']);
+                    $lastname  = htmlspecialchars($_POST['lastname']);
 
                     $model = new modelNewAccount();
                     if(filter_var($user_mail, FILTER_VALIDATE_EMAIL)) {
@@ -74,7 +74,11 @@
                             if($pwd == $pwd2) {
                                 // On génère une clé unique à chaque utilisateur
                                 $key = uniqid();
-                                echo $key;
+                                
+                                $_SESSION['key'] = $key;
+
+                                unset($_SESSION['newAccountError']);
+
                                 $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
         
                                 $header="MIME-Version: 1.0\r\n";
@@ -85,14 +89,15 @@
                                 <html>
                                 <body>
                                     <div align="center">
-                                        <a href="http://127.0.0.1/rss_feed_aggregator.test/confirmation.php?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
+                                        <h3>Vous y êtes presque !</h3>
+                                        <a href="http://127.0.0.1/rss_feed_aggregator.test/newAccount/phase2?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
                                     </div>
                                 </body>
                                 </html>
                                 ';
                                 mail($mail, "Confirmation de compte", $message, $header);
-                                $_SESSION['newAccountError'] = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter</a>";
-                                header('Location: viewConfirmation.php');
+                                $_SESSION['newAccountError'] = "Un email de confirmation vous a été envoyé à l'adresse <b>".$user_mail."</b>.";
+                                header('Location: ./phase1');
                             
                             } else {
                                 $_SESSION['newAccountError'] = "Vos mots de passes ne correspondent pas !";
