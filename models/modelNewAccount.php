@@ -24,7 +24,9 @@ require './models/db_connect.php';
             $topics = $userStmt->fetch(PDO::FETCH_ASSOC);
             return $topics;
         }
+        
     }
+    
 
 
 

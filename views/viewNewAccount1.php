@@ -10,23 +10,36 @@
 </head>
 
 <body>
-    <form id="msform" action = "./verify" method = "post">
-        <!-- fieldsets -->
-        <fieldset>
-            <h2 class="fs-title">Créez votre compte</h2>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="email" placeholder="Email" />
-            <input type="text" name="username" placeholder="Pseudo" />
-            <input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
-            <p class = "error"><?php if(isset($_SESSION['new_account_error'])) { echo $_SESSION['new_account_error']; } ?></p>
-            
-            <!-- btn  -->
-            <!-- <input type="button" name="previous" class="previous action-button" value="Previous" /> -->
-            <input type="submit" name="submit" class="submit action-button" value="Submit" />
-        </fieldset>
-    </form>
+    <h2 class="">Inscription</h2>
+         <br /><br />
+         <!-- formualaire de connexion  -->
+         <form id="msform" method="POST" action = "./verify">
+         <fieldset>
+                     <label for="pseudo">Nom :</label>
+                     <input type="text" placeholder="Votre Nom" id="pseudo" name="pseudo" value="<?php if(isset($user_nom)) { echo $user_nom; } ?>" />
+                     <label for="mail">Email :</label>
+                     <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" />
+                     <label for="mdp">Mot de passe :</label>
+                     <input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" />
+                     <label for="mdp2">Confirmation du mot de passe :</label>
+                     <input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2" />
+                     <p class = "error"><?php if(isset($_SESSION['new_account_error'])) { echo $_SESSION['new_account_error']; } ?></p>
+
+                     <br />
+                     <input type="submit" name="forminscription" value="VALIDER" />
+                     </fieldset>
+         </form>
+         <?php
+         if(isset($erreur))
+         {
+            echo '<font color="red">'.$erreur."</font>";
+         }
+         ?>
+    
+<script async src="script.js"></script>
+
+
+
 </body>
 
 </html>
