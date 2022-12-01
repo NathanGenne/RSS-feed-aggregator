@@ -107,11 +107,9 @@
          */
         public function verifyMail($key){
 
-            require './models/Users.php';
-
             if(isset($key) && !empty($key)) {
 
-                    $key = htmlspecialchars($key);
+                    $key = htmlspecialchars($key[0]);
 
                     if ($_SESSION['key'] == $key) {
                         $_SESSION['verified'] = 1;
@@ -119,11 +117,10 @@
                     }
 
             } else {
-               $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de données valides";
+                $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de données valides";
+                $_SESSION['verified'] = 0;
+                header('Location: ../phase1');
             }
-            $_SESSION['verified'] = 0;
-            $_SESSION['newAccountError'] = $key;
-            header('Location: ../phase1');
         }
     }
 
