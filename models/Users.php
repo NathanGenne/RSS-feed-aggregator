@@ -11,7 +11,7 @@ require './models/db_connect.php';
          * @param string $password
          * @return array
          */
-        function get_user($email, $password)
+        function get_user($email, $password) : array
         {
             $db = $this->connexion;
         
@@ -74,7 +74,7 @@ require './models/db_connect.php';
          * @param string $username
          * @return array
          */
-        function get_user_by_mail($user_mail)
+        function get_user_by_mail($user_mail) : array
         {
             $db = $this->connexion;
 
@@ -95,9 +95,9 @@ require './models/db_connect.php';
          * Récupère l'index de l'utilisateur en fonction de son pseudo
          *
          * @param string $username
-         * @return int
+         * @return array
          */
-        function get_id_by_username($username): int {
+        function get_id_by_username($username): array {
 
             $db = $this->connexion;
 
@@ -109,7 +109,7 @@ require './models/db_connect.php';
             $userIdStmt->bindValue(':input_name', $username);
 
             $userIdStmt->execute();
-            return $userIdStmt;
+            return $userIdStmt->fetch();
         }
 
 
@@ -117,9 +117,9 @@ require './models/db_connect.php';
          * Vérification de la validité du compte de l'utilisateur selon son index
          *
          * @param int $id
-         * @return int
+         * @return array
          */
-        function get_verified($id): int {
+        function get_verified($id): array {
             
             $db = $this->connexion;
 
@@ -131,7 +131,7 @@ require './models/db_connect.php';
             $verifiedStmt->bindValue(':input_id', $id);
 
             $verifiedStmt->execute();
-            return $verifiedStmt;
+            return $verifiedStmt->fetch();
         }
 
         /**

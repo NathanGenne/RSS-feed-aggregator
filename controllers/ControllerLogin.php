@@ -3,6 +3,7 @@
     class ControllerLogin {
 
         public function index() {
+            unset($_SESSION['login_error']);
             require 'views/viewLogin.php';
         }
 
@@ -25,7 +26,7 @@
 
                     $_SESSION['id'] = $user['user_id'];
 
-                    if( $model->get_verified($_SESSION['id']) == 1 ) {
+                    if( $model->get_verified($_SESSION['id'])['verified'] == 1 ) {
                         $_SESSION['verified'] = 1;
                         $_SESSION['mail'] = $email;
                         $_SESSION['pwd'] = $pwd;

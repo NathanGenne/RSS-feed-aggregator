@@ -61,7 +61,7 @@
                                 $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, 0);
                                 
                                 // On stock l'index de l'utilisateur pour chercher ses informations plus tard
-                                $_SESSION['id'] = $model->get_id_by_username($username);
+                                $_SESSION['id'] = $model->get_id_by_username($username)['user_id'];
 
                                 // On génère et envoi le mail à envoyer à l'utilisateur
                                 $header="MIME-Version: 1.0\r\n";
