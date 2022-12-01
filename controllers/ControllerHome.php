@@ -2,56 +2,28 @@
 
     class ControllerHome {
 
-        public function index()
-        {
-            unset($_SESSION['verifConfirmed']);
-
-            if ( isset($_SESSION['verified']) && $_SESSION['verified'] == 1 )
-            {
+        public function index() {
+            if ( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
                 require 'views/viewHome.php';
-            } else
-            {
+            } else {
                 $_SESSION['login_error'] = "Petit coquinoux ...";
                 header('Location: ../login');
             }
         }
 
 
-        public function phase1()
-        {
-            unset($_SESSION['verifConfirmed']);
-
-            if ( isset($_SESSION['verified']) && $_SESSION['verified'] == 1 )
-            {
+        public function forgotPassword() {
+            if ( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
                 require 'views/viewForgotPassword1.php';
-            } else
-            {
-                $_SESSION['login_error'] = "Petit coquinoux ...";
-                header('Location: ../login');
-            }
-        }
-
-        public function phase2() {
-            if ( isset($_SESSION['verified']) && $_SESSION['verified'] == 1 )
-            {
-                if (isset($_SESSION['verifConfirmed']) && $_SESSION['verifConfirmed'] == 1)
-                {
-                    require 'views/viewForgotPassword2.php';
-                } else
-                {
-                    require 'views/viewForgotPassword1.php';
-                }
-                
-            } else
-            {
+            } else {
                 $_SESSION['login_error'] = "Petit coquinoux ...";
                 header('Location: ../login');
             }
         }
 
 
-        public function get_RSS($id)
-        {
+        public function get_RSS($id) {
+
             $_SESSION['topics'] = '';
 
             require 'models/Users.php';
@@ -109,32 +81,8 @@
             }
         }
 
-
-        /**
-         * Vérifie que les données entrées en paramètre du mail de vérification sont valides
-         *
-         * @return void
-         */
-        public function verifyMail($key){
-            
-            if(isset($key)) {
-                require './models/Users.php';
-                $model = new Users();
-
-                $key = htmlspecialchars($key[0]);
-                $user_key = $model->get_user_by_key(htmlspecialchars($key[0]));
-
-                if ($user_key) {
-                    $_SESSION['verified'] = 1;
-                    $_SESSION['verifConfirmed'] = 1;
-                    header('Location: ../phase2');
-                }
-
-            } else {
-                $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de données valides";
-                $_SESSION['verified'] = 0;
-                header('Location: ../phase1');
-            }
+        public function verifyMail($key) {
+            echo $key;
         }
     }
 

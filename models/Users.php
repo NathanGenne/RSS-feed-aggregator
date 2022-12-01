@@ -86,7 +86,7 @@ require './models/db_connect.php';
             $userStmt->bindValue(':input_mail', $user_mail);
 
             $userStmt->execute();
-            $user = $userStmt->fetch();
+            $user = $userStmt->fetchAll(PDO::FETCH_ASSOC);
             return $user;
         }
 
@@ -109,7 +109,7 @@ require './models/db_connect.php';
             $userStmt->bindValue(':input_key', $key);
 
             $userStmt->execute();
-            $user = $userStmt->fetch();
+            $user = $userStmt->fetchAll(PDO::FETCH_ASSOC);
             return $user;
         }
 
