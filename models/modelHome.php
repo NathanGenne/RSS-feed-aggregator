@@ -3,8 +3,14 @@
 require './models/db_connect.php';
 
     class modelHome extends db_connect {
-        /* Récupértion des centres d'intérêts de l'utilisateur selon son index */
-        function get_topics($mail)
+
+        /**
+         * Récupertion des centres d'intérêts de l'utilisateur selon son index
+         *
+         * @param int $id
+         * @return void
+         */
+        function get_topics_by_id($id)
         {
             $db = $this->connexion;
         
@@ -13,16 +19,15 @@ require './models/db_connect.php';
                 topics
             FROM
                 user
-            WHERE user_mail = :input_mail
+            WHERE user_id = :input_id
             EOD;
         
-            $userStmt = $db->prepare($sql);
-            $userStmt->bindValue(':input_mail', $mail);
+            $userTopicsStmt = $db->prepare($sql);
+            $userTopicsStmt->bindValue(':input_id', $id);
         
-            $userStmt->execute();
+            $userTopicsStmt->execute();
         
-            $topics = $userStmt->fetch(PDO::FETCH_ASSOC);
-            return $topics;
+            return $userTopicsStmt->fetch();
         }
     }
 

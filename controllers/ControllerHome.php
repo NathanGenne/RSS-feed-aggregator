@@ -3,32 +3,29 @@
     class ControllerHome {
 
         public function index() {
-            require 'views/viewHome.php';
+            if ( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
+                require 'views/viewHome.php';
+            } else {
+                require 'views/viewLogin.php';
+            }
         }
 
-        public function get_RSS() {
-
+        public function get_RSS($id) {
+            $_SESSION['topics'] = '';
             require 'models/modelHome.php';
 
-            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+            $model = new modelHome();
+            $topics = $model->get_topics_by_id($id);
 
-                /* Sécurité supplémentaire */
-                $mail = htmlspecialchars($_SESSION['mail']);
+            if ( !empty($topics) ) {
 
-                $model = new modelHome();
-                $topics = $model->get_topics($mail);
+                $_SESSION['topics'] = $topics;
 
-                if ( !empty($topics) ) {
+                header('Location: ../home');
 
-                    $_SESSION['topics'] = $topics;
-
-                    header('Location: ../home');
-
-                } else {
-                    $_SESSION['login_error'] = "Vos préférences sont corrompus";
-                    header('Location: ../login');
-                }
-
+            } else {
+                $_SESSION['login_error'] = "Vos préférences sont corrompus";
+                header('Location: ../login');
             }
 
         }

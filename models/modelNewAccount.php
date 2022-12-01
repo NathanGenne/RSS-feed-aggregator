@@ -41,6 +41,36 @@ require './models/db_connect.php';
             $user = $userStmt->fetch(PDO::FETCH_ASSOC);
             return $user;
         }
+
+        function get_id_by_username($username) {
+
+            $db = $this->connexion;
+
+            $sql = <<<EOD
+            SELECT `user_id` FROM user WHERE username = :input_name
+            EOD;
+
+            $userIdStmt = $db->prepare($sql);
+            $userIdStmt->bindValue(':input_name', $username);
+
+            $userIdStmt->execute();
+            return $userIdStmt->fetch();
+        }
+
+        function get_verified($id) {
+            
+            $db = $this->connexion;
+
+            $sql = <<<EOD
+            SELECT `verified` FROM user WHERE user_id = :input_id
+            EOD;
+
+            $verifiedStmt = $db->prepare($sql);
+            $verifiedStmt->bindValue(':input_id', $id);
+
+            $verifiedStmt->execute();
+            return $verifiedStmt->fetch();
+        }
     }
 
 

@@ -9,6 +9,9 @@
         public function phase2() {
             if( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
                 require 'views/viewNewAccount2.php';
+            } else {
+                $_SESSION['newAccountError'] = "Vous devez valider votre compte avant d'accéder à la suite de l'inscription";
+                require 'views/NewAccount1.php';
             }
         }
 
@@ -16,6 +19,11 @@
             require 'views/viewLogin.php';
         }
 
+        /**
+         * Vérifie les informations entrées dans le formulaire de création de compte et envoie le mail de vérification à l'utilisateur
+         *
+         * @return void
+         */
         public function setNewAccount(){
 
             require './models/modelNewAccount.php';
@@ -33,7 +41,7 @@
                     $firstname = htmlspecialchars($_POST['firstname']);
                     $lastname  = htmlspecialchars($_POST['lastname']);
 
-                    $model = new modelNewAccount();
+                    $modelNewAccount = new modelNewAccount();
 
                     if(filter_var($user_mail, FILTER_VALIDATE_EMAIL)) {
                         // Fonction vérifiant l'existance du mail entré en paramètre
@@ -51,8 +59,11 @@
                                 $_SESSION['username'] = $username;
 
                                 // On ajoute les données de l'utilisateur dans la base de donnée
-                                $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
+                                $modelNewAccount->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
                                 
+                                // On stock l'index de l'utilisateur pour chercher ses informations plus tard
+                                $_SESSION['id'] = $modelNewAccount->get_id_by_username($username);
+
                                 // On génère et envoi le mail à envoyer à l'utilisateur
                                 $header="MIME-Version: 1.0\r\n";
                                 $header.='From:"<test.rhode@gmail.com>'."\n";
@@ -63,7 +74,7 @@
                                 <body>
                                     <div align="center">
                                         <h3>Vous y êtes presque !</h3><br>
-                                        <a href="http://127.0.0.1//RSS_feed_aggregator/newAccount/phase2?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
+                                        <a href="http://127.0.0.1//RSS_feed_aggregator/newAccount/verifyMail?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
                                     </div>
                                 </body>
                                 </html>
@@ -90,6 +101,11 @@
             header('Location: ./phase1');
         }
 
+        /**
+         * Vérifie que les données entrées en paramètre du mail de vérification sont valides
+         *
+         * @return void
+         */
         public function verifyMail(){
 
             require './models/modelNewAccount.php';
@@ -105,7 +121,7 @@
                     }
 
             } else {
-               $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de donénes valides";
+               $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de données valides";
             }
             $_SESSION['verified'] = 0;
             header('Location: ./phase1');
