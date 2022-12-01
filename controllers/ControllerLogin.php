@@ -34,7 +34,7 @@
                         header('Location: ../home');
 
                     } else {
-                        $_SESSION['login_error'] = $model->get_verified($_SESSION['id']);
+                        $_SESSION['login_error'] = "Votre compte n'est pas vérifié";
                         header('Location: ../login');
                     }
 
