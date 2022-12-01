@@ -27,9 +27,11 @@
                 <?php foreach($topic_content->channel->item as $list) { ?>
                     <div class="cadre col">
                         <fieldset>
-                                <h4><a href="<?= $list->link ?>"><?= $list->title ?></a></h4>
+                            <a href="<?= $list->link ?>">
+                                <h4><?= $list->title ?></h4>
+                                <img src="<?= $list->children('media', true)->dispay ?>" alt="">
                                 <p><?= $list->description ?></p>
-                            
+                            </a>
                         </fieldset>
                     </div>
                     

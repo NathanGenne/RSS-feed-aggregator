@@ -14,10 +14,10 @@
          <!-- fieldsets -->
          <fieldset>
             <h3>Connexion</h3>
-            <input type = "email" class = "form-control" name = "email" placeholder = "nathan.genne@gmail.com"  required autofocus></br>
-            <input type = "password" class = "form-control" name = "password" placeholder = "password" required>
+            <input type = "email" class = "form-control" name = "email" placeholder = "nathan.genne@gmail.com"  required autofocus>
+            <input type = "password" class = "form-control" name = "password" placeholder = "mot de passe" required>
             <p class = "error"><?php if(isset($_SESSION['login_error'])) { echo $_SESSION['login_error']; } ?></p>
-            <input class = "submit action-button" type = "submit"  name = "login">
+            <button type="submit" name="login" class="submit action-button">Connexion</button>
          </fieldset>
          <fieldset>
             <p><a href="./newAccount/phase1">créer un compte</a></p> <br>

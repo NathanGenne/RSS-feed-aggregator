@@ -3,7 +3,7 @@
     class ControllerLogin {
 
         public function index() {
-            unset($_SESSION['login_error']);
+            
             require 'views/viewLogin.php';
         }
 

@@ -14,16 +14,16 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Créez votre compte</h2>
-            <input type="text" name="firstname" placeholder="First Name" />
-            <input type="text" name="lastname" placeholder="Last Name" />
+            <input type="text" name="firstname" placeholder="Prénom" autofocus/>
+            <input type="text" name="lastname" placeholder="Nom" />
             <input type="text" name="mail" placeholder="Email" />
             <input type="text" name="username" placeholder="Pseudo" />
-            <input type="password" name="pwd" placeholder="Password" />
-            <input type="password" name="pwd2" placeholder="Confirm Password" />
+            <input type="password" name="pwd" placeholder="Mot de passe" />
+            <input type="password" name="pwd2" placeholder="Confirmation du mot de passe" />
             <p class = "error"><?php if(isset($_SESSION['newAccountError'])) { echo $_SESSION['newAccountError']; } ?></p>
             
             
-            <input type="submit" name="submit" class="submit action-button" value="Submit" />
+            <button type="submit" name="submit" class="submit action-button">Confirmer</button>
             <a href="../login">Retour</a>
         </fieldset>
     </form>

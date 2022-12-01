@@ -73,7 +73,7 @@
                                 <body>
                                     <div align="center">
                                         <h3>Vous y êtes presque !</h3><br>
-                                        <a href="http://127.0.0.1//RSS_feed_aggregator/newAccount/verifyMail?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
+                                        <a href="http://127.0.0.1//RSS_feed_aggregator/newAccount/verifyMail/'.urlencode($username).'&'.$key.'">Confirmez votre compte !</a>
                                     </div>
                                 </body>
                                 </html>
@@ -105,14 +105,14 @@
          *
          * @return void
          */
-        public function verifyMail(){
+        public function verifyMail($data){
 
             require './models/Users.php';
 
-            if(isset($_GET['username'], $_GET['key']) && !empty($_GET['username']) && !empty($_GET['key'])) {
+            if(isset($data[0], $data[1]) && !empty($data[0]) && !empty($data[1])) {
 
-                    $username = htmlspecialchars($_GET['username']);
-                    $key      = htmlspecialchars($_GET['key']);
+                    $username = htmlspecialchars($data[0]);
+                    $key      = htmlspecialchars($data[1]);
 
                     if ($_SESSION['key'] === $key && $_SESSION['username'] === $username) {
                         $_SESSION['verified'] = 1;

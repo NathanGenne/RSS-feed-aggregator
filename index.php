@@ -16,7 +16,12 @@ if($params[0] != ""){
         $controller = new $controller();
 
         if(method_exists($controller, $action)){
-            $controller->$action();
+
+            $data = isset($params[2]) ? $params[2] : null;
+            $data = explode('&', $data);
+
+            $controller->$action($data);
+            
         }
         else {
             http_response_code(404);
