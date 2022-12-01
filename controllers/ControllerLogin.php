@@ -25,7 +25,7 @@
 
                 $_SESSION['id'] = $user['user_id'];
 
-                if( $modelNewAccount->get_verified($_SESSION['id']) === 1 ) {
+                if( $model->get_verified($_SESSION['id']) === 1 ) {
                     $_SESSION['verified'] = 1;
                     $_SESSION['mail'] = $email;
                     $_SESSION['pwd'] = $pwd;
