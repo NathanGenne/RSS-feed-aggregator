@@ -11,10 +11,12 @@
         }
 
         public function get_RSS($id) {
-            $_SESSION['topics'] = '';
-            require 'models/modelHome.php';
 
-            $model = new modelHome();
+            $_SESSION['topics'] = '';
+
+            require 'models/Users.php';
+
+            $model = new Users();
             $topics = $model->get_topics_by_id($id);
 
             if ( !empty($topics) ) {

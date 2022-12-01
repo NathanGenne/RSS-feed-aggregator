@@ -26,7 +26,8 @@
          */
         public function setNewAccount(){
 
-            require './models/modelNewAccount.php';
+            require './models/Users.php';
+            $model = new Users();
 
             // On supprime le contenu de la variable contenant les messages d'erreur
             unset($_SESSION['newAccountError']);
@@ -41,12 +42,10 @@
                     $firstname = htmlspecialchars($_POST['firstname']);
                     $lastname  = htmlspecialchars($_POST['lastname']);
 
-                    $modelNewAccount = new modelNewAccount();
-
                     if(filter_var($user_mail, FILTER_VALIDATE_EMAIL)) {
-                        // Fonction vérifiant l'existance du mail entré en paramètre
+                        // Fonction vérifiant l'existance dans la base de donnée de l'adresse mail entré en paramètre
                         $mailexist =  $model->get_user_by_mail($user_mail);
-                        // Si le mail n'existe pas :
+                        // Si l'adresse mail n'existe pas :
                         if(!$mailexist) {
                             // Si les mots de passe sont cohérents :
                             if($pwd == $pwd2) {
@@ -59,10 +58,10 @@
                                 $_SESSION['username'] = $username;
 
                                 // On ajoute les données de l'utilisateur dans la base de donnée
-                                $modelNewAccount->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
+                                $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, 0);
                                 
                                 // On stock l'index de l'utilisateur pour chercher ses informations plus tard
-                                $_SESSION['id'] = $modelNewAccount->get_id_by_username($username);
+                                $_SESSION['id'] = $model->get_id_by_username($username);
 
                                 // On génère et envoi le mail à envoyer à l'utilisateur
                                 $header="MIME-Version: 1.0\r\n";
@@ -108,12 +107,12 @@
          */
         public function verifyMail(){
 
-            require './models/modelNewAccount.php';
+            require './models/Users.php';
 
             if(isset($_GET['username'], $_GET['key']) && !empty($_GET['username']) && !empty($_GET['key'])) {
 
-                    $username  = htmlspecialchars($_GET['username']);
-                    $key = htmlspecialchars($_GET['key']);
+                    $username = htmlspecialchars($_GET['username']);
+                    $key      = htmlspecialchars($_GET['key']);
 
                     if ($_SESSION['key'] === $key && $_SESSION['username'] === $username) {
                         $_SESSION['verified'] = 1;

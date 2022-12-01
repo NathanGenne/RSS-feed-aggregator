@@ -8,8 +8,7 @@
 
         public function verify() {
 
-            require 'models/modelLogin.php';
-            require 'models/modelNewAccount.php';
+            require 'models/Users.php';
 
             unset($_SESSION['login_error']);
 
@@ -19,13 +18,12 @@
                 $email = htmlspecialchars($_POST['email']);
                 $pwd   = htmlspecialchars($_POST['password']);
 
-                $modelLogin = new modelLogin();
-                $user  = $modelLogin->get_user($email, $pwd);
+                $model = new Users();
+                $user  = $model->get_user($email, $pwd);
 
             if ( $user && $pwd == $_POST['password'] ) {
 
-                $modelNewAccount = new modelNewAccount();
-                $_SESSION['id'] = $modelNewAccount->get_id_by_username($username);
+                $_SESSION['id'] = $model->get_id_by_username($username);
 
                 if( $modelNewAccount->get_verified($_SESSION['id']) === 1 ) {
                     $_SESSION['verified'] = 1;
