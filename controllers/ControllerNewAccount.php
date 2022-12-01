@@ -106,7 +106,7 @@
          * @return void
          */
         public function verifyMail($key){
-
+            
             if(isset($key)) {
                 require './models/Users.php';
                 $model = new Users();

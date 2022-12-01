@@ -4,6 +4,8 @@
 
         public function index() {
             
+            // On supprime le contenu de la variable contenant les messages d'erreur
+            unset($_SESSION['newAccountError']);
             require 'views/viewLogin.php';
         }
 
