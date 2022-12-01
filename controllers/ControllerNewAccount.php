@@ -113,7 +113,7 @@
 
                     $key = htmlspecialchars($key);
 
-                    if ($_SESSION['key'] === $key) {
+                    if ($_SESSION['key'] == $key) {
                         $_SESSION['verified'] = 1;
                         header('Location: ../phase2');
                     }
