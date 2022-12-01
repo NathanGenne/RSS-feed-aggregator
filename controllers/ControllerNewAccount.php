@@ -115,14 +115,15 @@
 
                     if ($_SESSION['key'] === $key) {
                         $_SESSION['verified'] = 1;
-                        header('Location: ./phase2');
+                        header('Location: ../phase2');
                     }
 
             } else {
                $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de données valides";
             }
             $_SESSION['verified'] = 0;
-            header('Location: ./phase1');
+            $_SESSION['newAccountError'] = $key;
+            header('Location: ../phase1');
         }
     }
 
