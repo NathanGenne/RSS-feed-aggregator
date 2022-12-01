@@ -16,11 +16,9 @@ if($params[0] != ""){
         $controller = new $controller();
 
         if(method_exists($controller, $action)){
-
-            $data = isset($params[2]) ? $params[2] : null;
-            $data = explode('&', $data);
-
-            $controller->$action($data);
+            unset($params[0]);
+            unset($params[1]);
+            call_user_func_array([$controller, $action], $params);
             
         }
         else {

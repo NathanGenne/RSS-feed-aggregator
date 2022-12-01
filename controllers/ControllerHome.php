@@ -11,6 +11,17 @@
             }
         }
 
+
+        public function forgotPassword() {
+            if ( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
+                require 'views/viewForgotPassword1.php';
+            } else {
+                $_SESSION['login_error'] = "Petit coquinoux ...";
+                header('Location: ../login');
+            }
+        }
+
+
         public function get_RSS($id) {
 
             $_SESSION['topics'] = '';
@@ -70,8 +81,8 @@
             }
         }
 
-        public function verifyMail($data) {
-            echo 'oui';
+        public function verifyMail($key) {
+            echo $key;
         }
     }
 
