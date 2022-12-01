@@ -7,7 +7,9 @@
         }
 
         public function phase2() {
-            require 'views/viewNewAccount2.php';
+            if( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
+                require 'views/viewNewAccount2.php';
+            }
         }
 
         public function index() {
@@ -17,6 +19,9 @@
         public function setNewAccount(){
 
             require './models/modelNewAccount.php';
+
+            // On supprime le contenu de la variable contenant les messages d'erreur
+            unset($_SESSION['newAccountError']);
 
             if(isset($_POST['submit'])) {
 
@@ -29,6 +34,7 @@
                     $lastname  = htmlspecialchars($_POST['lastname']);
 
                     $model = new modelNewAccount();
+
                     if(filter_var($user_mail, FILTER_VALIDATE_EMAIL)) {
                         // Fonction vérifiant l'existance du mail entré en paramètre
                         $mailexist =  $model->get_user_by_mail($user_mail);
@@ -40,12 +46,9 @@
                                 $key = uniqid();
                                 echo $key;
                                 
-                                // On stock cette clef dans une variable $_SESSION
+                                // On stock la clef et le pseudo dans une variable $_SESSION
                                 $_SESSION['key'] = $key;
                                 $_SESSION['username'] = $username;
-
-                                // On supprime le contenu de la variable contenant le message d'erreur
-                                unset($_SESSION['newAccountError']);
 
                                 // On ajoute les données de l'utilisateur dans la base de donnée
                                 $model->add_user($username, $user_mail, $pwd, $firstname, $lastname, $key, uniqid());
@@ -80,11 +83,32 @@
                     } else {
                         $_SESSION['newAccountError'] = "Votre adresse mail n'est pas valide !";
                     }
-            } else {
-               $_SESSION['newAccountError'] = "Tous les champs doivent être complétés !";
+                } else {
+                   $_SESSION['newAccountError'] = "Tous les champs doivent être complétés !";
+                }
             }
+            header('Location: ./phase1');
         }
-        header('Location: ./phase1');
+
+        public function verifyMail(){
+
+            require './models/modelNewAccount.php';
+
+            if(isset($_GET['username'], $_GET['key']) && !empty($_GET['username']) && !empty($_GET['key'])) {
+
+                    $username  = htmlspecialchars($_GET['username']);
+                    $key = htmlspecialchars($_GET['key']);
+
+                    if ($_SESSION['key'] === $key && $_SESSION['username'] === $username) {
+                        $_SESSION['verified'] = 1;
+                        header('Location: ./phase2');
+                    }
+
+            } else {
+               $_SESSION['newAccountError'] = "Votre lien de vérification ne possède pas de donénes valides";
+            }
+            $_SESSION['verified'] = 0;
+            header('Location: ./phase1');
+        }
     }
 
-}
