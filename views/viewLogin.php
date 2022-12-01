@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             <input class = "submit action-button" type = "submit"  name = "login">
          </fieldset>
          <fieldset>
-            <p><a href="./newAccount/phase1">créer un compte</a></p>
+            <p><a href="./newAccount/phase1">créer un compte</a></p> <br>
             <p><a href="./newAccount/phase1">Mot de passe oublié ?</a></p>
          </fieldset>
     </form>

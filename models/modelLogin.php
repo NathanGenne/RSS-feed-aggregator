@@ -10,15 +10,15 @@ require './models/db_connect.php';
         
             $sql = <<<EOD
             SELECT
-                user_email,
+                user_mail,
                 user_pwd
             FROM
                 user
-            WHERE user_email = :input_email AND user_pwd = :input_pwd
+            WHERE user_mail = :input_mail AND user_pwd = :input_pwd
             EOD;
         
             $userStmt = $db->prepare($sql);
-            $userStmt->bindValue(':input_email', $email);
+            $userStmt->bindValue(':input_mail', $email);
             $userStmt->bindValue(':input_pwd', $password);
         
             $userStmt->execute();

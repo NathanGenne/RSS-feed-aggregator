@@ -10,16 +10,16 @@
 </head>
 
 <body>
-    <form id="msform" action = "./verify" method = "post">
+    <form id="msform" action = "./setNewAccount" method = "post">
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Créez votre compte</h2>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="email" placeholder="Email" />
+            <input type="text" name="firstname" placeholder="First Name" />
+            <input type="text" name="lastname" placeholder="Last Name" />
+            <input type="text" name="mail" placeholder="Email" />
             <input type="text" name="username" placeholder="Pseudo" />
-            <input type="password" name="pass" placeholder="Password" />
-            <input type="password" name="cpass" placeholder="Confirm Password" />
+            <input type="password" name="pwd" placeholder="Password" />
+            <input type="password" name="pwd2" placeholder="Confirm Password" />
             <p class = "error"><?php if(isset($_SESSION['newAccountError'])) { echo $_SESSION['newAccountError']; } ?></p>
             
             

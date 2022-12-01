@@ -60,12 +60,12 @@
                                 <body>
                                     <div align="center">
                                         <h3>Vous y êtes presque !</h3><br>
-                                        <a href="http://127.0.0.1/rss_feed_aggregator.test/newAccount/phase2?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
+                                        <a href="http://127.0.0.1//RSS_feed_aggregator/newAccount/phase2?username='.urlencode($username).'&key='.$key.'">Confirmez votre compte !</a>
                                     </div>
                                 </body>
                                 </html>
                                 ';
-                                mail($mail, "Confirmation de compte", $message, $header);
+                                mail($user_mail, "Confirmation de compte", $message, $header);
 
                                 // Le message d'erreur deviens un message invitant l'utilisateur à cliquer sur le lien envoyé par mail
                                 $_SESSION['newAccountError'] = "Un email de confirmation vous a été envoyé à l'adresse <b>".$user_mail."</b>.";
