@@ -14,12 +14,12 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Créez votre compte</h2>
-            <input type="text" name="firstname" placeholder="First Name" />
-            <input type="text" name="lastname" placeholder="Last Name" />
-            <input type="text" name="mail" placeholder="Email" />
-            <input type="text" name="username" placeholder="Pseudo" />
-            <input type="password" name="pwd" placeholder="Password" />
-            <input type="password" name="pwd2" placeholder="Confirm Password" />
+            <input type="text" name="firstname" placeholder="Votre Nom" />
+            <input type="text" name="lastname" placeholder="Votre prénom" />
+            <input type="text" name="mail" placeholder="Votre Email" />
+            <input type="text" name="username" placeholder="Votre Pseudo" />
+            <input type="password" name="pwd" placeholder="Votre mot de passe" />
+            <input type="password" name="pwd2" placeholder="Confirmer votre mot de passe" />
             <p class = "error"><?php if(isset($_SESSION['newAccountError'])) { echo $_SESSION['newAccountError']; } ?></p>
             
             
