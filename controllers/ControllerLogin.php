@@ -23,7 +23,7 @@
 
             if ( $user && $pwd == $_POST['password'] ) {
 
-                $_SESSION['id'] = $model->get_id_by_username($username);
+                $_SESSION['id'] = $user['user_id'];
 
                 if( $modelNewAccount->get_verified($_SESSION['id']) === 1 ) {
                     $_SESSION['verified'] = 1;
