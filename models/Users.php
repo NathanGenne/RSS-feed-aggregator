@@ -92,6 +92,29 @@ require './models/db_connect.php';
 
 
         /**
+         * Récupère les information d'un utilisateur en fonction de sa clef
+         *
+         * @param int $key
+         * @return array
+         */
+        function get_user_by_key($key) : array
+        {
+            $db = $this->connexion;
+
+            $sql = <<<EOD
+            SELECT * FROM user WHERE confirmkey = :input_key
+            EOD;
+
+            $userStmt = $db->prepare($sql);
+            $userStmt->bindValue(':input_key', $key);
+
+            $userStmt->execute();
+            $user = $userStmt->fetch();
+            return $user;
+        }
+
+
+        /**
          * Récupère l'index de l'utilisateur en fonction de son pseudo
          *
          * @param string $username
