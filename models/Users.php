@@ -119,7 +119,7 @@ require './models/db_connect.php';
          * @param int $id
          * @return array
          */
-        function get_verified($id): int {
+        function get_verified($id): array {
             
             $db = $this->connexion;
 
