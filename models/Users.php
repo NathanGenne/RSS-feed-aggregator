@@ -124,7 +124,7 @@ require './models/db_connect.php';
             $db = $this->connexion;
 
             $sql = <<<EOD
-            SELECT `verified` FROM user WHERE user_id = :input_id
+            SELECT verified FROM user WHERE user_id = :input_id
             EOD;
 
             $verifiedStmt = $db->prepare($sql);

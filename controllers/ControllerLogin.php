@@ -21,22 +21,23 @@
                 $model = new Users();
                 $user  = $model->get_user($email, $pwd);
 
-            if ( $user && $pwd == $_POST['password'] ) {
+                if ( $user && $pwd == $_POST['password'] ) {
+                    var_dump($user);
 
-                $_SESSION['id'] = $user['user_id'];
+                    $_SESSION['id'] = $user['user_id'];
+                    var_dump($user['user_id']);
+                    if( $model->get_verified($_SESSION['id']) === 1 ) {
+                        $_SESSION['verified'] = 1;
+                        $_SESSION['mail'] = $email;
+                        $_SESSION['pwd'] = $pwd;
 
-                if( $model->get_verified($_SESSION['id']) === 1 ) {
-                    $_SESSION['verified'] = 1;
-                    $_SESSION['mail'] = $email;
-                    $_SESSION['pwd'] = $pwd;
+                        header('Location: ../home');
+                    }
 
-                    header('Location: ../home');
+                } else {
+                    $_SESSION['login_error'] = "Mauvais email ou mot de passe";
+                    header('Location: ../login');
                 }
-
-            } else {
-                $_SESSION['login_error'] = "Mauvais email ou mot de passe";
-                header('Location: ../login');
-            }
 
         }
 
