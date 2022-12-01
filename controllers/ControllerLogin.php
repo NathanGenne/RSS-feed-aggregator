@@ -24,7 +24,7 @@
                 if ( $user && $pwd == $_POST['password'] ) {
 
                     $_SESSION['id'] = $user['user_id'];
-                    
+
                     if( $model->get_verified($_SESSION['id']) == 1 ) {
                         $_SESSION['verified'] = 1;
                         $_SESSION['mail'] = $email;
@@ -33,7 +33,7 @@
                         header('Location: ../home');
 
                     } else {
-                        $_SESSION['login_error'] = "Vous n'êtes pas un utilisateur vérifié";
+                        $_SESSION['login_error'] = $model->get_verified($_SESSION['id']);
                         header('Location: ../login');
                     }
 
