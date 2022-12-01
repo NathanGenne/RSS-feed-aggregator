@@ -7,11 +7,11 @@
         }
 
         public function phase2() {
-            if( isset($_SESSION['verified']) && $_SESSION['verified'] === 1 ) {
+            if( isset($_SESSION['verified']) && $_SESSION['verified'] == 1 ) {
                 require 'views/viewNewAccount2.php';
             } else {
                 $_SESSION['newAccountError'] = "Vous devez valider votre compte avant d'accéder à la suite de l'inscription";
-                require 'views/NewAccount1.php';
+                require 'views/viewNewAccount1.php';
             }
         }
 
