@@ -14,13 +14,13 @@
 </head>
 
 <body>
-    <form id="msform" action="" method="post">
+    <form id="msform" action="./home/setPassword" method="post">
         <!-- fieldsets -->
         <fieldset>
             <h3>Créez votre nouveau mot de passe</h3>
             <div class="container">
                 <label for="pwd"><b>Nouveau mot de passe</b></label>
-                <input type="text" name="pwd" required placeholder="1234">
+                <input type="text" name="pwd" required autofocus placeholder="1234">
                 <label for="cpwd"><b>Confirmer le mot de passe</b></label>
                 <input type="text" name="cpwd" required placeholder="1234">
                 <button type="submit">Valider</button>

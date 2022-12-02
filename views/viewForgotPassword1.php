@@ -20,7 +20,7 @@
             <h3>J'ai oublié mon mot de passe</h3>
             <div class="container">
                 <label for="mail"><b>Insérez votre Email pour reçevoir un mail de création de mot de passe</b></label>
-                <input type="email" placeholder="Email" name="mail" required placeholder="nathan.genne@gmail.com">
+                <input type="email" placeholder="Email" name="mail" required autofocus placeholder="nathan.genne@gmail.com">
                 <button type="submit">Valider</button>
             </div>
         </fieldset>

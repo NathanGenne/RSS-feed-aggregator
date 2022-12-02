@@ -163,7 +163,7 @@ require './models/db_connect.php';
          * @param int $id
          * @return array
          */
-        function get_topics_by_id($id)
+        function get_topics_by_id($id): array
         {
             $db = $this->connexion;
         
@@ -177,6 +177,34 @@ require './models/db_connect.php';
         
             $userTopicsStmt = $db->prepare($sql);
             $userTopicsStmt->bindValue(':input_id', $id);
+        
+            $userTopicsStmt->execute();
+        
+            return $userTopicsStmt->fetch();
+        }
+
+
+        /**
+         * Modification du mot de passe de l'utilisateur selon son index
+         *
+         * @param int $id
+         * @return array
+         */
+        function setPassword($id, $pwd): array {
+            $db = $this->connexion;
+        
+            $sql = <<<EOD
+            UPDATE
+                user
+            SET
+                user_pwd = :input_pwd
+            WHERE
+                user_id = :input_id
+            EOD;
+        
+            $userTopicsStmt = $db->prepare($sql);
+            $userTopicsStmt->bindValue(':input_id', $id);
+            $userTopicsStmt->bindValue(':input_pwd', $pwd);
         
             $userTopicsStmt->execute();
         
